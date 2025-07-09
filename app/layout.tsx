@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "WhatsApp Real Estate Dashboard",
-  description: "Professional dashboard for WhatsApp real estate data from Twilio",
+  description: "Professional dashboard for WhatsApp real estate data from Twilio with AI assistant",
     generator: 'v0.dev'
 }
 
