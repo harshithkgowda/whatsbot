@@ -138,7 +138,7 @@ export async function POST(req: NextRequest) {
           }
         };
 
-        const apiKey = "";
+        const apiKey = "AIzaSyB9A0JzdOYO3vKjTClMG9HbiG4Scc4P77s";
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
         const response = await fetch(apiUrl, {
