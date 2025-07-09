@@ -1,0 +1,52 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model WhatsappMessage {
+    id                  String   @id @default(cuid()) 
+    whatsappMessageId   String   @unique 
+    senderPhoneNumber   String
+    receiverPhoneNumber String
+    messageBody         String?  @db.Text 
+    messageType         String
+    mediaUrl            String?
+    profileName         String?
+    timestamp           DateTime @default(now())
+    isIncoming          Boolean
+    status              String
+    propertyInquiry     PropertyInquiry[]
+    @@index([senderPhoneNumber])
+    @@index([timestamp])
+}
+
+model PropertyInquiry {
+  id                String    @id @default(cuid())
+  whatsappMessageId String    @unique 
+  whatsappMessage   WhatsappMessage @relation(fields: [whatsappMessageId], references: [whatsappMessageId])
+
+  inquiryDateTime   DateTime? 
+  type              String?   
+  transaction       String?   
+  bhkConfig         String?   
+  address           String?
+  pinCode           String?
+  area              String?   
+  price             String?  
+  condition         String?   
+  floor             String?   
+  features          String?   @db.Text 
+  contact           String?   
+
+  createdAt         DateTime  @default(now()) 
+
+  @@index([inquiryDateTime])
+  @@index([type])
+  @@index([transaction])
+  @@map("property_inquiries") 
+}
